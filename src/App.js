@@ -9,14 +9,18 @@ class App extends React.Component {
       pos: 'right'
     }
   }
+
+  //On mouse over
   mouseOver = () => {
     this.setState({ hovering: true });
   }
 
+  //On mouse out
   mouseOut = () => {
     this.setState({ hovering: false });
   }
 
+  //As we change position
   changePos(event) {
     this.setState({
       pos: event.target.value
@@ -25,6 +29,7 @@ class App extends React.Component {
 
   render() {
   
+    //Custom Styles
     let tooltip = { backgroundColor:"black", borderRadius:"5px", color:"white",padding:'4px',width:"100px" ,opacity:"0.3"}
 
     if (this.state.pos === 'left') {
@@ -39,6 +44,8 @@ class App extends React.Component {
     else {
       tooltip = { ...tooltip, position: "absolute", bottom: '-35%', left: "110%" }
     }
+
+
     return (
       <div className="App">
           <select style={ddlStyle} onChange={this.changePos.bind(this)}>
@@ -48,14 +55,18 @@ class App extends React.Component {
             <option value="left">Left</option>
             <option value="top">Top</option>
           </select>
-          <button style={mystyle} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} >Hover over me!
-            {this.state.hovering ? <div style={tooltip}>Thanks for hovering! <br /> I'm a tooltip. </div> : null}
+          <button style={mystyle} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} >Hover over me!   
+          {/* Target Div */}
+          
+          {this.state.hovering ? <div style={tooltip}>Thanks for hovering! <br /> I'm a tooltip. </div> : null}
+          {/* Tooltip Div */}
           </button>
       </div>
     );
   }
 }
 
+//My styles
 const mystyle = {
   backgroundColor: "#f5f5f5",
   padding: "10px",
